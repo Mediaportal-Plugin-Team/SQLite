@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Sqlite</id>
-    <version>3.50.1</version>
+    <version>3.50.2</version>
     <authors>sqlite</authors>
     <owners>ajs</owners>
     <licenseUrl>http://www.sqlite.org/copyright.html</licenseUrl>
@@ -10,7 +10,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>SQLite is a software library that implements a self-contained, serverless, zero-configuration, transactional SQL database engine. SQLite is the most widely deployed database engine in the world.</description>
     <summary>SQLite x86/x64 - Precompiled Binaries for Windows</summary>
-    <releaseNotes>Update to sqlite 3.50.1 (x86/x64)</releaseNotes>
+    <releaseNotes>Update to sqlite 3.50.2 (x86/x64)</releaseNotes>
     <copyright>Copyright (c) 2021-2025</copyright>
   </metadata>
 </package>
