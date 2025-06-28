@@ -69,6 +69,16 @@ jobs:
         run: nuget.exe pack Sqlite.nuspec
         working-directory: ${{ github.workspace }}\SQLite
 
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v4
+        with:
+          source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Push Package to GitHub registry
+        run: dotnet nuget push **\*.nupkg --skip-duplicate --no-symbols
+
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
