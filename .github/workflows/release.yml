@@ -25,6 +25,7 @@ jobs:
               - '**.nuspec'
 
   version:
+    name: Version
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.get-version.outputs.version }}
@@ -39,7 +40,7 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           branch-name: master
           file-format: xml
-          file-path: "${{ github.workspace }}\\SQLite\\Sqlite.nuspec"
+          file-path: "SQLite/Sqlite.nuspec"
           version-keys: Version
           fail-when-version-not-found: false
 
