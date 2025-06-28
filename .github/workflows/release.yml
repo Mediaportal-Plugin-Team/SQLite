@@ -74,6 +74,7 @@ jobs:
         with:
           name: SQLite ${{ needs.version.outputs.version }}
           tag_name: ${{ needs.version.outputs.version }}
+          body: ${{ needs.version.outputs.notes }}
           generate_release_notes: true
           files: |
             SQLite/*.nupkg
