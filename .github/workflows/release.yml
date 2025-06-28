@@ -41,7 +41,7 @@ jobs:
           branch-name: master
           file-format: xml
           file-path: "SQLite/Sqlite.nuspec"
-          version-keys: Version
+          version-keys: version
           fail-when-version-not-found: false
 
   release:
