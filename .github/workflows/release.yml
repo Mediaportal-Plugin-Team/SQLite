@@ -55,6 +55,7 @@ jobs:
       - version
     permissions:
       contents: write
+      packages: write
     if: ${{ needs.changes.outputs.changes == 'true' }}
 
     runs-on: windows-2022
