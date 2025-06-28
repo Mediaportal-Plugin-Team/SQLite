@@ -45,7 +45,7 @@ jobs:
         working-directory: ${{ github.workspace }}\SQLite
 
       - name: Get Package Version
-        uses: KinsonDigital/VersionMiner@v1
+        uses: KinsonDigital/VersionMiner@v1.0.0
         id: get-version
         with:
           repo-owner: Mediaportal-Plugin-Team
