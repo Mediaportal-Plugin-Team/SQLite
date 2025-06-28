@@ -28,21 +28,25 @@ jobs:
     name: Version
     runs-on: ubuntu-latest
     outputs:
-      version: ${{ steps.get-version.outputs.version }}
+      version: ${{ steps.version.outputs.info }}
+      notes: ${{ steps.notes.outputs.info }}
     steps:
       - uses: actions/checkout@v4
       - name: Get Package Version
-        uses: KinsonDigital/VersionMiner@v1.0.0
-        id: get-version
+        id: version
+        uses: mavrosxristoforos/get-xml-info@2.0
         with:
-          repo-owner: Mediaportal-Plugin-Team
-          repo-name: SQLite
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          branch-name: master
-          file-format: xml
-          file-path: "SQLite/Sqlite.nuspec"
-          version-keys: version
-          fail-when-version-not-found: false
+          xml-file: "SQLite/Sqlite.nuspec"
+          xpath: "//*[local-name()='package']/*[local-name()='metadata']/*[local-name()='version']"
+      - name: Get Package Release Notes
+        id: notes
+        uses: mavrosxristoforos/get-xml-info@2.0
+        with:
+          xml-file: "SQLite/Sqlite.nuspec"
+          xpath: "//*[local-name()='package']/*[local-name()='metadata']/*[local-name()='releaseNotes']"
+      - name: Print Version
+        id: print-output
+        run: echo "${{ steps.version.outputs.info }} - ${{ steps.notes.outputs.info }}"
 
   release:
     name: Release
@@ -51,7 +55,7 @@ jobs:
       - version
     permissions:
       contents: write
-    if: ${{ needs.changes.outputs.changes == 'true' && needs.version.outputs.version }}
+    if: ${{ needs.changes.outputs.changes == 'true' }}
 
     runs-on: windows-2022
 
