@@ -16,7 +16,7 @@ jobs:
     outputs:
       changes: ${{ steps.changes.outputs.nuget }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: dorny/paths-filter@v3
         id: changes
         with:
@@ -31,7 +31,7 @@ jobs:
       version: ${{ steps.version.outputs.info }}
       notes: ${{ steps.notes.outputs.info }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Get Package Version
         id: version
         uses: mavrosxristoforos/get-xml-info@2.0
@@ -62,7 +62,7 @@ jobs:
 
     steps:
       - name: Git Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
