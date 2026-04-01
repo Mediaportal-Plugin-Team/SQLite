@@ -72,7 +72,7 @@ jobs:
         working-directory: ${{ github.workspace }}\SQLite
 
       - name: Setup .NET Core
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v5
         with:
           source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
         env:
