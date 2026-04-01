@@ -67,19 +67,21 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '8.0.x'
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
       - name: Pack
         run: nuget.exe pack Sqlite.nuspec
         working-directory: ${{ github.workspace }}\SQLite
 
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v5
-        with:
-          source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
-        env:
-          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
       - name: Push Package to GitHub registry
-        run: dotnet nuget push **\*.nupkg --skip-duplicate --no-symbols
+        run: |
+          dotnet nuget add source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" --name github --username ${{ github.repository_owner }} --password ${{ secrets.GITHUB_TOKEN }}
+          dotnet nuget push "**\*.nupkg" --source github --api-key ${{ secrets.GITHUB_TOKEN }} --skip-duplicate --no-symbols
 
       - name: Release
         uses: softprops/action-gh-release@v2
