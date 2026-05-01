@@ -1,6 +1,6 @@
 # SQLite
 
-[![MP AnyCPU](https://img.shields.io/badge/MP-AnyCPU-blue?logo=windows&logoColor=white)](https://github.com/Mediaportal-Plugin-Team/SQLite/releases)
+[![x86](https://img.shields.io/badge/SQLite-x86-orange?logo=windows&logoColor=white)](https://github.com/Mediaportal-Plugin-Team/SQLite/releases)[![x64](https://img.shields.io/badge/x64-blue?logoColor=white)](https://github.com/Mediaportal-Plugin-Team/SQLite/releases)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/Mediaportal-Plugin-Team/SQLite/release.yml?logo=github)](https://github.com/Mediaportal-Plugin-Team/SQLite/actions)
 [![GitHub](https://img.shields.io/github/license/Mediaportal-Plugin-Team/SQLite?color=blue)](https://github.com/Mediaportal-Plugin-Team/SQLite/blob/master/LICENSE)
 [![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/Mediaportal-Plugin-Team/SQLite?include_prereleases)](https://github.com/Mediaportal-Plugin-Team/SQLite/releases)
