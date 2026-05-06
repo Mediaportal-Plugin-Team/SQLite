@@ -53,7 +53,7 @@ jobs:
 
           URL_X64="https://sqlite.org/${REL_URL_X64}"
           URL_X86="https://sqlite.org/${REL_URL_X86}"
-          
+
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "url_x64=$URL_X64" >> $GITHUB_OUTPUT
           echo "url_x86=$URL_X86" >> $GITHUB_OUTPUT
@@ -92,7 +92,7 @@ jobs:
 
           mv download/x64_temp/sqlite3.dll SQLite/sqlite/x64/sqlite.dll
           mv download/x86_temp/sqlite3.dll SQLite/sqlite/x86/sqlite.dll
-          
+
           rm -rf download
 
       - name: 📝 Update Nuspec File
