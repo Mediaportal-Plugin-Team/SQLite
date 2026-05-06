@@ -114,16 +114,30 @@ jobs:
           commit_message: "Update SQLite to v${{ needs.changes.outputs.latest }}"
           file_pattern: 'SQLite/sqlite/x64/sqlite.dll SQLite/sqlite/x86/sqlite.dll SQLite/Sqlite.nuspec'
 
+  report:
+    name: Reporting
+    if: always()
+    needs:
+      - changes
+      - build
+    runs-on: ubuntu-latest
+    steps:
       - name: 📊 Generate Summary
-        if: always()
         run: |
-          echo "## 🚀 SQLite Update Summary" >> $GITHUB_STEP_SUMMARY
+          if [[ "${{ needs.build.result }}" == "skipped" ]]; then
+            STATUS="☕ No updates found"
+          elif [[ "${{ needs.build.result }}" == "success" ]]; then
+            STATUS="✅ Successfully updated"
+          else
+            STATUS="❌ Build failed"
+          fi
+
+          echo "## 🚀 SQLite Check Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "| Property | Value |" >> $GITHUB_STEP_SUMMARY
           echo "| :--- | :--- |" >> $GITHUB_STEP_SUMMARY
-          echo "| **New Version** | \`${{ needs.changes.outputs.latest }}\` |" >> $GITHUB_STEP_SUMMARY
-          echo "| **Previous Version** | \`${{ needs.changes.outputs.version }}\` |" >> $GITHUB_STEP_SUMMARY
-          echo "| **Status** | ✅ Updated |" >> $GITHUB_STEP_SUMMARY
-          echo "| **Updated Files** | \`sqlite.dll\` (x86/x64), \`Sqlite.nuspec\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Latest on site** | \`${{ needs.changes.outputs.latest }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Current in repo** | \`${{ needs.changes.outputs.version }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Status** | $STATUS |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "🔗 [SQLite Download Page](https://sqlite.org/download.html)" >> $GITHUB_STEP_SUMMARY
