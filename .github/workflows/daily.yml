@@ -10,6 +10,7 @@ on:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
+  actions: write
   contents: read
   pages: write
   id-token: write
@@ -109,10 +110,18 @@ jobs:
           cat "$FILE_PATH"
 
       - name: 🚀 Commit and Push changes
+        id: auto_commit
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "Update SQLite to v${{ needs.changes.outputs.latest }}"
           file_pattern: 'SQLite/sqlite/x64/sqlite.dll SQLite/sqlite/x86/sqlite.dll SQLite/Sqlite.nuspec'
+
+      - name: ⚡ Trigger Release Workflow
+        if: steps.auto_commit.outputs.changes_detected == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run release.yml --ref master
 
   report:
     name: Reporting
