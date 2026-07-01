@@ -8,10 +8,6 @@ on:
     # Ignore all Tags / Release
     tags-ignore:
       - '**'
-  workflow_run:
-    workflows: ["Check and Update"]
-    types:
-      - completed      
   workflow_dispatch:
 
 jobs:
