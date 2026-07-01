@@ -84,7 +84,7 @@ jobs:
           dotnet nuget push "**\*.nupkg" --source github --api-key ${{ secrets.GITHUB_TOKEN }} --skip-duplicate --no-symbols
 
       - name: Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           name: SQLite ${{ needs.version.outputs.version }}
           tag_name: ${{ needs.version.outputs.version }}
